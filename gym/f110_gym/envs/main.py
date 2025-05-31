@@ -7,7 +7,8 @@ from base_classes import Integrator
 from custom_builds.simple_planner import planner # the policy/motion planner that you create
 from custom_builds.follow_the_gap import followTheGap
 from custom_builds.algoTesting import testing
-from custom_builds.outsidewall_planner import outsidewallPlanner
+from custom_builds.rightside_wall_planner import rightwallPlanner
+from custom_builds.leftside_wall_planner import leftwallPlanner
 # from custom_builds.lidar_plannerUpgrade import widthFinder
 from laser_models import ScanSimulator2D as Scan
 import random
@@ -25,7 +26,8 @@ conf = Namespace(**conf_dict)
 oldplanner = planner(conf, (0.17145+0.15875)) #OLD PLANNER
 # planner = testing(conf)
 #planner = followTheGap(conf, work['num_beams'])
-planner = outsidewallPlanner(conf)
+planner = leftwallPlanner(conf)
+# planner = rightwallPlanner(conf)
 
 
 scanner = Scan(270, np.pi*(3/2))

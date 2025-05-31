@@ -9,7 +9,7 @@ from numba import njit
 from pyglet.gl import GL_POINTS
 import math
 
-class outsidewallPlanner:
+class rightwallPlanner:
     """
     Outside wall follower!!!
     Its for the paper trust
