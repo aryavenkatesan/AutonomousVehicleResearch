@@ -9,6 +9,7 @@ from custom_builds.follow_the_gap import followTheGap
 from custom_builds.algoTesting import testing
 from custom_builds.rightside_wall_planner import rightwallPlanner
 from custom_builds.leftside_wall_planner import leftwallPlanner
+from custom_builds.voronoi_planner import voronoiPlanner
 # from custom_builds.lidar_plannerUpgrade import widthFinder
 from laser_models import ScanSimulator2D as Scan
 import random
@@ -26,8 +27,9 @@ conf = Namespace(**conf_dict)
 oldplanner = planner(conf, (0.17145+0.15875)) #OLD PLANNER
 # planner = testing(conf)
 #planner = followTheGap(conf, work['num_beams'])
-planner = leftwallPlanner(conf)
+# planner = leftwallPlanner(conf)
 # planner = rightwallPlanner(conf)
+planner = voronoiPlanner(conf)
 
 
 scanner = Scan(270, np.pi*(3/2))
