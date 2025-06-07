@@ -35,3 +35,9 @@ pip install -e . |
 cd examples | 
 pip3 install pyglet==1.5.20 | 
 python3 waypoint_follow.py 
+
+____________
+
+Fast env setup:
+
+eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && source ~/.zshrc && pyenv virtualenv 3.9.18 gym_env ; pyenv activate gym_env

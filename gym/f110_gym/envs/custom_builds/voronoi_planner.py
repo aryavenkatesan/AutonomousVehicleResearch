@@ -18,19 +18,20 @@ class voronoiPlanner:
     def plan(self, pose_x, pose_y, pose_theta):
         scanResult = self.lidar.scan(np.array([pose_x, pose_y, pose_theta]), None)
 
+        # try 90 degree feelers in the front so it sees there and can react earlier
 
 
         smallestValue = 999 
         smallestIndex = 0 #Angle the car is vs the optimal angle
         delta = 0 #How much bigger the left distance is than right distance
-        for i in range(0, 90): # value is hardcoded
-            value = scanResult[i] + scanResult[i+180]
+        for i in range(45, 135): # value is hardcoded
+            value = scanResult[i] + scanResult[i+90]
             if value < smallestValue:
                 smallestValue = value
                 smallestIndex =  i
-                delta = scanResult[i] - scanResult[i+180]
+                delta = scanResult[i] - scanResult[i+90]
         
-        deviation = (smallestIndex - 45) * 0.02
+        deviation = (smallestIndex - 90) * 0.03
         if delta < -0.2:
             if delta > 0:
                 deviation = 0
@@ -40,9 +41,9 @@ class voronoiPlanner:
                 deviation = 0
             deviation -= 0.4
         
-        baseSpeed = 4
+        baseSpeed = 5
         speed = baseSpeed
-        if abs(smallestIndex-45) < 4:
+        if abs(smallestIndex-90) < 4:
             speed = 9
 
         
